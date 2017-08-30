@@ -1,0 +1,25 @@
+<h2>Add Reservation</h2>
+
+<%= form_for @reservation do |f| %>
+	<label>Name: </label> <br/>
+	<%= f.text_field :name, autofocus: true %> <br/>
+
+	<label>Email: </label> <br/>
+	<%= f.text_field :email %> <br/>
+
+	<label>Occation: </label> <br/>
+	<%= f.collection_select :occation_id, Occation.all, :id, :name, prompt: "Select Occation" %> <br/>
+
+	<label>Message: </label> <br/>
+	<%= f.text_area :message %> <br/>
+
+	<label>OccationDate: </label> <br/>
+	<%= f.date_select :occation_date %> <br/>
+
+	<% if user_signed_in? && current_user.is_admin %>
+		<%= f.submit %> or <%= link_to "back", reservations_path %>
+	<% end %>
+<% end %>
+
+
+

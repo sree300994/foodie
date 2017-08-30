@@ -1,0 +1,41 @@
+<h2>Menu</h2>
+
+<% if @food_menus.empty? %>
+	<p>No Menu Found</p>
+<% else %>
+	<ul>
+		<% @food_menus.each do |food_menu| %>
+			<b>
+				<i>
+					<%= food_menu.name %>
+				</b>
+			</i>
+			<br/>
+			
+			<%= link_to "show", food_menu_path(food_menu) %>
+			
+			<% if user_signed_in? && current_user.is_admin %>
+				<%= link_to "edit", edit_food_menu_path(food_menu) %>
+				<%= link_to "delete", food_menu_path(food_menu), method: :delete %>
+			<% end %>
+
+			
+				<% food_menu.items.each do |item| %>
+				<li>
+					<%= item.name %>
+					<%= item.price %>
+					<%#= item.food_menu.name %>
+				</li>
+				<% end %>
+			
+
+
+		<% end %>
+	</ul>
+<% end %>
+
+<% if user_signed_in? && current_user.is_admin %>
+	<%= link_to "Add Menu", new_food_menu_path %>
+<% end %>
+
+

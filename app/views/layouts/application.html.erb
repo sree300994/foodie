@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foodie</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if user_signed_in? %>
+ <%= link_to "Edit Account", edit_user_registration_path %>
+ <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+<% else %>
+ <%= link_to "Login", new_user_session_path %> | <%= link_to "Register", new_user_registration_path %>
+<% end %>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<p>
+	<%= link_to "Home", homes_about_path %>
+	<%= link_to "About", homes_about_path %>
+	<%= link_to "Features", homes_feature_path %>
+	<%= link_to "Menu", homes_menu_path %>
+	<%= link_to "Events", homes_event_path %>
+	<%= link_to "Reservation", homes_reservation_path %>
+ </p>
+<p>
+	<%= link_to "FoodMenu", food_menus_path %>
+	<%= link_to "Restaurants", restaurants_path %>
+	<%= link_to "Items", items_path %>
+	<%= link_to "Cart", cart_line_items_path %>
+	<%= link_to "UpcomingEvents", upcoming_events_path %>
+	<%= link_to "Reservations", reservations_path %>
+	<%= link_to "Occations", occations_path %>
+</p>
+<%= yield %>
+
+</body>
+</html>

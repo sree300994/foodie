@@ -1,0 +1,18 @@
+<h2>Listing Restaurants</h2>
+<% if @restaurants.empty? %>
+	<p>No Restaurants Found</p>
+	<% else %>
+	<ul>
+		<% @restaurants.each do |restaurant| %>
+		<li> <%= link_to restaurant.name, restaurant_path(restaurant.id) %> 
+		    <%= restaurant.location %>
+
+		  <%= link_to "show", restaurant_path(restaurant.id) %>
+		</li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= link_to "Add Restaurant", new_restaurant_path %>
+
+<%= render template: "homes/about" %>

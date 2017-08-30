@@ -1,0 +1,17 @@
+<h2>Add UpcomingEvent</h2>
+
+<%= form_for @upcoming_event do |f| %>
+
+	<label>Name: </label> <br/>
+	<%= f.text_field :name %> <br/>
+
+	<label>Date: </label> <br/>
+	<%= f.date_field :date %> <br/>
+
+	<label>Description: </label> <br/>
+	<%= f.text_area :description %> <br/>
+
+	<% if current_user.is_admin %>
+		<%= f.submit %> or <%= link_to "back", upcoming_events_path %>
+	<% end %>
+<% end %>

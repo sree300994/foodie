@@ -1,0 +1,11 @@
+<h2> EDIT OCCATION </h2>
+
+<%= form_for @occation do |f| %>
+
+	<label>Name: </label> <br/>
+	<%= f.text_field :name %> <br/>
+
+	<% if current_user.is_admin %>
+		<%= f.submit %> or <%= link_to "back", occations_path %>
+	<% end %>
+<% end %>

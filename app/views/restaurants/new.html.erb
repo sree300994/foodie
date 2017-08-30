@@ -1,0 +1,19 @@
+<h2> New Restaurant </h2>
+<%= form_for @hotel do |sree| %>
+  <% if @hotel.errors.any? %>
+    <h2>The errors : </h2>
+    <ul>
+   	  <% @hotel.errors.full_messages.each do |msg| %>
+   	   <li> <%= msg %> </li>
+   	  <% end %>
+    </ul>
+   <% end %>
+
+   <label>Name: </label> <br/>
+   <%= sree.text_field :name, placeholder: "Enter the Name", autofocus: true %> <br/>
+
+   <label>Location: </label> <br/>
+   <%= sree.text_field :location %> <br/>
+
+   <%= sree.submit %> or <%= link_to "back", restaurants_path %>
+<% end %>

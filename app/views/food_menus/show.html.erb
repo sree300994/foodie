@@ -1,0 +1,15 @@
+<h2> <%= @food_menu.name %> </h2>
+
+<p>NAME: <%= @food_menu.name %> </p>
+
+<h2>Listing Items</h2>
+
+<% @food_menu.items.each do |item| %>
+	<li><%= item.name %>
+		<%= item.price %>
+		<%= item.description %>
+	</li>
+<% end %>
+
+	<%= link_to "Menu", food_menus_path %>
+

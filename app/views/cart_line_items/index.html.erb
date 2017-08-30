@@ -1,0 +1,42 @@
+<h2>Your Cart Items</h2>
+
+<table border = "1">
+	
+	<thead>
+		<tr>
+			<th> Sl No </th>
+			<th> Name </th>
+			<th> Price </th>
+			<th> Quantity </th>
+			<th> Total </th>
+			<th> Remove </th>
+			<th> WishList</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% total = 0 %>
+		<% @cart_line_items.each_with_index do |line_item, index| %>
+			<tr>
+				<td><%= index + 1 %> </td>
+				<td><%= line_item.item.name %></td>
+				<td><%= line_item.item.price %></td>
+				<td>
+				<%= line_item.quantity %></td>
+				<td><%= line_item.item.price * line_item.quantity %></td>
+				<% total = total + line_item.item.price * line_item.quantity %>
+				<td><%= link_to "Remove", cart_line_item_path(line_item), method: :delete %></td>
+				<td>
+					<%= form_for @wish_list do |f| %>
+						<%= f.hidden_field :restaurant_id, value: line_item.restaurant_id %>
+						<%= f.hidden_field :item_id, value: line_item.item_id %>
+						<%= f.submit "Add to wishlist" %>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h3>Cart Total: <%= total %> </h3>
+
+

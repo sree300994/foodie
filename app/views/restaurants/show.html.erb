@@ -1,0 +1,25 @@
+<h2><%= @restaurant.name %></h2>
+
+<p>NAME : <%= @restaurant.name %> </p>
+<p>LOCATION : <%= @restaurant.location %> </p>
+
+<h3>FoodMenus have : </h3>
+ <ol>
+	<% @restaurant.food_menus.each do |food_menu| %>
+		<li><%= food_menu.name %></li>
+		<% food_menu.items.each do |item| %>
+			<ul>
+				<li><%= item.name %>
+					<%= item.price %>
+					<%= form_for @cart_line_item do |f| %>
+
+						<%= f.hidden_field :quantity, value: "1" %>
+						<%= f.hidden_field :item_id, value: item.id %>
+						<%= f.submit "create"%>
+					<% end %>
+				</li>
+			</ul>
+		<% end %>
+	<% end %>
+ </ol>
+<%= link_to "Restaurants", restaurants_path %>

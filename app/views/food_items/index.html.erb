@@ -1,0 +1,15 @@
+<h2>Listing Food Items</h2>
+<% if @food_items.empty? %>
+	<p>No Items Found</p>
+<% else %>
+	<ul>
+		<% @food_items.each do |food_item| %>
+		<li> <%= food_item.items %>
+			<%= food_item.price %>
+			<%= food_item.restaurant_id %>
+		</li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= link_to "Add FoodItems", new_food_item_path %>

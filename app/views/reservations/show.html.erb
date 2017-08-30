@@ -1,0 +1,13 @@
+<h2> <%= @reservation.name %> </h2>
+
+<p>NAME: <%= @reservation.name %> </p>
+<p>EMAIL: <%= @reservation.email %> </p>
+<p>OCCATION: <%= Occation.find_by(@reservation.occation_id).name %> </p>
+<p>MESSAGE: <%= @reservation.message %> </p>
+<p>DATE: <%= @reservation.occation_date %> </p>
+
+<h2>Listing Occations</h2>
+
+<%# @reservation.occation.each do || %>
+
+<%= link_to "Back to Reservations", reservations_path %>

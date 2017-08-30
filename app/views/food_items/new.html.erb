@@ -1,0 +1,24 @@
+<h2>Listing Food Items</h2>
+
+<%= form_for @food_item do |sree| %>
+	<% if @food_item.errors.any? %>
+	<h3>These errors are: </h3>
+	<ul>
+		<% @food_item.errors.full_messages.each do |msg| %>
+			<li> <%= msg %> </li>
+		<% end %>
+	</ul>
+	<% end %>
+
+	<label>Item: </label> <br/>
+	<%= sree.text_field :items, autofocus: true %> <br/>
+
+	<label>Price: </label> <br/>
+	<%= sree.number_field :price %> <br/>
+
+	<label>Restaurant Id: </label> <br/>
+	<%= sree.collection_select :restaurant_id, Restaurant.all, :id, :name, prompt: "Select Restaurant" %> <br/>
+
+	<%= sree.submit %> or <%= link_to "back", food_items_path %>
+
+<% end %>

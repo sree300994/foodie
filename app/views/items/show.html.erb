@@ -1,0 +1,16 @@
+<h2> <%= @item.name %> </h2>
+
+<p>NAME: <%= @item.name %> </p>
+<p>PRICE: <%= @item.price %> </p>
+<p>DESCRIPTION: <%= @item.description %> </p>
+<p>FOODMENU: <%= @item.food_menu.name %> </p>
+
+<%= form_for @cart_line_item do |f| %>
+	<%= f.label :quantity %>
+	<%= f.select :quantity, (1..10).to_a %> <br/>
+
+	<%= f.hidden_field :item_id, value: @item.id %>
+	<%= f.submit "Add to cart" %>
+<% end %>
+
+<%= link_to "Items", items_path %> 

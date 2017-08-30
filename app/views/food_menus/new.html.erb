@@ -1,0 +1,22 @@
+<h2>FOODMENU</h2>
+
+<%= form_for @food_menu do |f| %>
+	<% if @food_menu.errors.any? %>
+		<h2>The errors are: </h2>
+		<ul>
+			<% @food_menu.errors.full_messages.each do |msg| %>
+				<li> <%= msg %> </li>
+			<% end %>			
+		</ul>
+	<% end %>
+
+	<label>Menu: </label> <br/>
+	<%= f.text_field :name, autofocus: true %> <br/>
+
+	<label>Restaurant_id: </label> <br/>
+	<%= f.collection_check_boxes :restaurant_ids, Restaurant.all, :id, :name %> <br/>
+
+	<% if current_user.is_admin %>
+		<%= f.submit %> or <%= link_to "back", food_menus_path %>
+	<% end %>
+<% end %>

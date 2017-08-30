@@ -1,0 +1,20 @@
+<h2>Occations</h2>
+
+<% @occations.each do |occation| %>
+	<ul>
+		<li><p>NAME: <%= occation.name %> </p>
+			
+				<%= link_to "show", occation_path(occation) %>
+			<% if user_signed_in? && current_user.is_admin %>
+				<%= link_to "edit", edit_occation_path(occation) %>
+				<%= link_to "delete", occation_path(occation), method: :delete %>
+			<% end %>
+		</li>	
+	</ul>
+<% end %>
+
+<% if user_signed_in? && current_user.is_admin %>
+	<%= link_to "Add occation", new_occation_path %>
+<% end %>
+
+

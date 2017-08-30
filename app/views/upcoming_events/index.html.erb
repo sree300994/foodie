@@ -1,0 +1,21 @@
+<h2>UpcomingEvents</h2>
+
+<% @upcoming_events.each do |upcoming_event| %>
+	<ul>
+		<li><%= upcoming_event.name %>
+		<%= upcoming_event.date %>
+		<%= upcoming_event.description %></li>
+	
+			<%= link_to "show", upcoming_event_path(upcoming_event) %>
+		<% if user_signed_in? && current_user.is_admin %>
+			<%= link_to "edit", edit_upcoming_event_path(upcoming_event) %>
+			<%= link_to "destroy", upcoming_event_path(upcoming_event), method: :delete %>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if user_signed_in? && current_user.is_admin %>
+	<%= link_to "Add UpcomingEvent", new_upcoming_event_path %>
+<% end %>
+
+

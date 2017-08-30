@@ -1,0 +1,25 @@
+<h2>Reserve Table</h2>
+
+<% @reservations.each do |reservation| %>
+	<ul>
+		<li>
+			<p>NAME: <%= reservation.name %> </p>
+			<p>EMAIL: <%= reservation.email %> </p>
+			<P>OCCATION: <%= Occation.find_by(reservation.occation_id).name %> </P>
+			<p>MESSAGE: <%= reservation.message %> </p>
+			<p>OCCATION_DATE: <%= reservation.occation_date %> </p>
+			
+				<%= link_to "show", reservation_path(reservation) %>
+			<% if user_signed_in? && current_user.is_admin %>
+				<%= link_to "edit", edit_reservation_path(reservation) %>
+				<%= link_to "delete", reservation_path(reservation), method: :delete %>
+			<% end %>
+		</li>
+	</ul>
+<% end %>
+
+<% if user_signed_in? && current_user.is_admin %>
+	<%= link_to "Add Reservation", new_reservation_path %>
+<% end %>
+
+

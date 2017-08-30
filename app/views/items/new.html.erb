@@ -1,0 +1,29 @@
+<h2>Listing Items</h2>
+
+<%= form_for @item do |f| %>
+	<% if @item.errors.any? %>
+		<h3>The Errors are: </h3>
+		<ul>
+			<% @item.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<label>Item: </label> <br/>
+	<%= f.text_field :name, autofocus: true %> <br/>
+
+	<label>Price: </label> <br/>
+	<%= f.number_field :price %> <br/>
+
+	<label>Description: </label> <br/>
+	<%= f.text_area :description %> <br/>
+
+	<label>MenuId: </label> <br/>
+	<%= f.collection_select :food_menu_id, FoodMenu.all, :id, :name, prompt: "Select Menu" %> <br/>
+
+	<% if current_user.is_admin %>
+		<%= f.submit %> or <%= link_to "back", items_path %>
+	<% end %>
+<% end %>
+

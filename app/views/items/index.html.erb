@@ -1,0 +1,23 @@
+<h2>Items</h2>
+
+<ul>
+	<% @items.each do |item| %>
+		<li><%= item.name %>
+			<%= item.price %>
+			<%= item.description %>
+			<%= item.food_menu_id %>
+		</li>
+		
+			<%= link_to "show", item_path(item) %> 	
+		<% if user_signed_in? && current_user.is_admin %>
+			<%= link_to "edit", edit_item_path(item) %>
+			<%= link_to "delete", item_path(item), method: :delete %>	
+		<% end %>
+	<% end %>
+</ul>
+
+<% if user_signed_in? && current_user.is_admin %>
+	<%= link_to "Add Items", new_item_path %>
+<% end %>
+
+
